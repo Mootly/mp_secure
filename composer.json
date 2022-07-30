@@ -1,0 +1,23 @@
+{
+  "name"            : "mootly/mp_secure",
+  "description"     : "MoosePlum Error Management Class",
+  "keywords"        : ["error","errors","logging","PHP"],
+  "homepage"        : "https://github.com/Mootly/mp_errors",
+  "license"         : "MIT",
+  "authors" : [
+    {
+      "name"        : "Mootly Obviate",
+      "email"       : "mootly@mooseplum.org",
+      "homepage"    : "https://mooseplum.org",
+      "role"        : "developer"
+    }
+  ],
+  "type"            : "library",
+  "require" : {
+    "php"         : ">=8.0.0",
+    "mootly/mp_errors": "*"
+    },
+  "autoload": {
+    "psr-4": { "mpc\\": "src/" }
+ }
+}
