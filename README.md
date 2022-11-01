@@ -2,7 +2,7 @@
 
 This is a standalone version of the object locking class used by MoosePlum, for those who want a really simple and consistent method for protecting data in objects.
 
-Use requires adding calls to it to your class definitions and letting it handle all locking/unlocking of properties. Such properties should be private and only accessible through the class methods for that class.
+Use requires adding calls to the secure objects class in your class definitions and letting it handle all locking/unlocking of properties. Such properties should be private and only accessible through the class methods for that class.
 
 **This is NOT a secure solution.**
 
@@ -62,7 +62,7 @@ Once Composer is installed and running, add the following code to the `composer.
 
 Make sure you have the following listed as required. Adjust version numbers as necessary. See the `composer.json` in this class definition for required versions of dependencies for this version of the package.
 
-```
+```json
 "require": {
   "php": ">=8.0.0",
   "mootly/mp_errors": "*",
@@ -72,7 +72,7 @@ Make sure you have the following listed as required. Adjust version numbers as n
 
 If necessary for your configuration, make sure you have the following autoload definitions listed in your `composer.json`. Adjust the first step in the path as needed for the location of your vendor library.
 
-```
+```json
 "autoload": {
   "classmap": [
     "_lib/mootly/mp_errors",
@@ -83,7 +83,7 @@ If necessary for your configuration, make sure you have the following autoload d
 
 In your terminal of choice, navigate to the root of your website and run the following command. (Depending on how you installed composer, this may be different.)
 
-```
+```pwsh
 composer update
 ```
 
@@ -91,13 +91,15 @@ This should install this class definition and related dependencies in your vendo
 
 To be safe you can also run the following to rebuild the composer autoloader and make sure your classes are correctly registered.
 
-```
+```pwsh
 composer dump-autoload -o
 ```
 
 Make sure you have the following line to your page or application initialization code before using this class definition. Adjust accordingly based on the location of your vendor library.
 
-<pre>require_once <var>[site root]</var>.'/<var>[vendor lib]</var>/autoload.php';</pre>
+```php
+require_once "<site root>/<vendor lib>/autoload.php;"
+```
 
 That should be all your need to do to get it up and running.
 
@@ -105,9 +107,9 @@ That should be all your need to do to get it up and running.
 
 This class definition has one dependency that needs to be called before it: `mootly\mpc_errors`.
 
-If you are using autoloading, the recommended method for instantiation is as follows:
+If you are using autoloading, and you follow MoosePlum naming conventions, the recommended method for instantiation is as follows:
 
-```
+```php
 if (!isset($mpo_errors)) { $mpo_errors  = new \mpc\mpc_errors(); }
 if (!isset($mpo_secure)) { $mpo_secure  = new \mpc\mpc_secure($mpo_errors); }
 ```
@@ -140,13 +142,13 @@ Since these will only persist for as long as it takes for PHP to generate and se
 
 MoosePlum classes define the following property on instantiation to ensure unique names.
 
-```
+```php
 $this->classRef = bin2hex(random_bytes(8)).'::'.get_class();
 ```
 
 ### Methods
 
-#### checklock
+#### `checklock`
 
 Pass a unique identifier for a given property or method to check whether it is locked.
 
@@ -154,11 +156,11 @@ Pass a unique identifier for a given property or method to check whether it is l
 - Return the string 'secured' for secured properties or mtheods.
 - Otherwise return false.
 
-```
+```php
 public checklock(string) : string|bool
 ```
 
-#### listlock
+#### `listlock`
 
 Generates a list of all locked elements.
 
@@ -168,11 +170,11 @@ If you lock this method, it will only provide matches that begin with the string
 
 If you secure this method, it will always return false.
 
-```
+```php
 public listlock(string) : array|bool
 ```
 
-#### listsecure
+#### `listsecure`
 
 Generates a list of all secured elements.
 
@@ -182,21 +184,21 @@ If you lock this method, it will only provide matches that begin with the string
 
 If you secure this method, it will always return false.
 
-```
+```php
 public securelock(string) : array|bool
 ```
 
-#### lock
+#### `lock`
 
 Lock an element from further updates.
 
 It takes a string that is a unique identifier for the element to be locked.
 
-```
+```php
 public lock(string) : bool
 ```
 
-#### unlock
+#### `unlock`
 
 Unlock a locked element.
 
@@ -204,11 +206,11 @@ It takes a string that is a unique identifier for the element to be unlocked.
 
 Secured elements cannot be unlocked.
 
-```
+```php
 public lock(string) : bool
 ```
 
-#### secure
+#### `secure`
 
 Secure an element from further updates.
 
@@ -216,18 +218,18 @@ It takes a string that is a unique identifier for the element to be secured.
 
 Secured elements cannot be unlocked.
 
-```
+```php
 public secure(string) : bool
 ```
 
-#### secure4prod
+#### `secure4prod`
 
 Secures this class so that `listlock()` and `listsecure()` cannot be used.
 
 It takes no arguments.
 
-Neither method should be used in a production environment. They can both allow classes access to ach other's lock settings.
+Neither method locked by this should be used in a production environment. They can both allow classes access to each other's lock settings.
 
-```
+```php
 public secure4prod() : bool
 ```

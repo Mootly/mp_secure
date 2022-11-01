@@ -9,7 +9,7 @@
   * - generate a list of all current locks
   * - generate a list of all currently secured properties
   *
-  * Locks stored as simple array of string values, so they smust be unique.
+  * Locks stored as simple array of string values, so they must be unique.
   * Recommended method: Record locked items using a pseudo-namespace.
   * Examples:
   * - mpo_parts::main_body
@@ -26,6 +26,7 @@
   * 2022-07-01 | New PHP 8.0 version ready.
   * --------------------------------------------------------------------------- */
 namespace mpc;
+
 interface mpi_secure {
 # *** BEGIN checklock --------------------------------------------------------- *
 /**

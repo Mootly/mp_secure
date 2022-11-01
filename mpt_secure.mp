@@ -58,6 +58,8 @@ function initDefaults() {
 <body>
 <h1><code>mpc_secure</code> Test Page</h1>
 
+<p>Last updated: October 27, 2022</p>
+
 <h2>Sections</h2>
 
 <p>Many of the tests of other methods will already occur during instantiation. Especially the addStatusCodes.</p>

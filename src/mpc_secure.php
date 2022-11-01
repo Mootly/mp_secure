@@ -15,7 +15,7 @@
   * @method array             secure(string)
   * @method bool              secure4prod()
   *
-  * @copyright 2017-2022 Mootly Obviate
+  * @copyright 2021-2022 Mootly Obviate
   * @package   mooseplum
   * @version   1.0.0
   * --- Revision History ------------------------------------------------------ *
@@ -27,7 +27,7 @@ class mpc_secure implements mpi_secure {
   protected $classRef;
   protected $locked           = array();
   protected $secured          = array();
-  protected $err              = NULL;
+  protected $err              = null;
   # *** END - property assignments ---------------------------------------------- *
   #
   # *** BEGIN constructor ------------------------------------------------------- *
@@ -127,18 +127,18 @@ class mpc_secure implements mpi_secure {
 #
 # *** BEGIN secure ------------------------------------------------------------ *
 # You can secure a lock, but not lock a secure.
-public function secure(string $pProp) : bool  {
-  if (!in_array($pProp, $this->secured)) { $this->secured[] = $pProp; }
-  return true;
-}
+  public function secure(string $pProp) : bool  {
+    if (!in_array($pProp, $this->secured)) { $this->secured[] = $pProp; }
+    return true;
+  }
 # *** END - secure ------------------------------------------------------------ *
 #
 # *** BEGIN secure4prod ------------------------------------------------------- *
 # You can secure a lock, but not lock a secure.
-public function secure4prod() : bool  {
-  if (!in_array($this->classRef, $this->secured)) { $this->secured[] = $this->classRef; }
-  return true;
-}
+  public function secure4prod() : bool  {
+    if (!in_array($this->classRef, $this->secured)) { $this->secured[] = $this->classRef; }
+    return true;
+  }
 # *** END - secure4prod ------------------------------------------------------- *
 }
 // End mpc_secure ------------------------------------------------------------- *
