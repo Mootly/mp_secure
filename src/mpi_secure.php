@@ -21,7 +21,7 @@
   *
   * @copyright 2021-2022 Mootly Obviate
   * @package   mooseplum
-  * @version   1.0.0
+  * @version   0.1.0
   * --- Revision History ------------------------------------------------------ *
   * 2022-07-01 | New PHP 8.0 version ready.
   * --------------------------------------------------------------------------- */

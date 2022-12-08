@@ -38,7 +38,8 @@ function initDefaults() {
   $GLOBALS['t_statusB']     = 'not run';
 }
 ?>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <title>mpc_secure Test Page</title>
   <style type="text/css">
