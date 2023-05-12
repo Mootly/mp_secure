@@ -1,8 +1,8 @@
 {
   "name"            : "mootly/mp_secure",
-  "description"     : "MoosePlum Error Management Class",
-  "keywords"        : ["error","errors","logging","PHP"],
-  "homepage"        : "https://github.com/Mootly/mp_errors",
+  "description"     : "MoosePlum Secure Objects Class",
+  "keywords"        : ["secure","lock","PHP"],
+  "homepage"        : "https://github.com/Mootly/mp_secure",
   "license"         : "MIT",
   "authors" : [
     {

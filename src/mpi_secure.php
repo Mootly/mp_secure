@@ -19,11 +19,11 @@
   * - get_class().'::'.__METHOD__
   * - get_class().'_'.self::$iCount++ (for multiple instances)
   *
-  * @copyright 2021-2022 Mootly Obviate
+  * @copyright 2021-2023 Mootly Obviate
   * @package   mooseplum
-  * @version   0.1.0
+  * @version   1.0.0
   * --- Revision History ------------------------------------------------------ *
-  * 2022-07-01 | New PHP 8.0 version ready.
+  * 2023-05-12 | 1.0 ready.
   * --------------------------------------------------------------------------- */
 namespace mpc;
 

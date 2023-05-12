@@ -27,7 +27,7 @@ Except it's free, so maybe more sort of caveat donum?
 
 Requirements are pretty simple.
 
-- This was developed using PHP 8.1. It should work in PHP 7.0 and up, but has **not** been test for backward compatibility.
+- This was developed using PHP 8.1 & 8/2. It should work in PHP 7.0 and up, but has **not** been test for backward compatibility.
 - A web server, or what's the point really?
 
 ## Dependencies
@@ -47,7 +47,7 @@ The files in this set are as follows:
 | path                | description
 | ----------          | ----------
 | composer.json       | Yep, we are using [Composer](https://getcomposer.org).
-| LICENSE.md          | License notice [MIT](https://mit-license.org).
+| LICENSE.md          | License notice ( [MIT](https://mit-license.org) ).
 | README.md           | This document.
 | mpt_secure.php      | Local unit test file to make sure things work.
 | src/mpc_secure.php  | The class definition.
