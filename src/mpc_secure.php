@@ -23,7 +23,6 @@
   * --------------------------------------------------------------------------- */
 namespace mpc;
 class mpc_secure implements mpi_secure {
-  protected $iName;
   protected $classRef;
   protected $locked           = array();
   protected $secured          = array();
@@ -38,20 +37,28 @@ class mpc_secure implements mpi_secure {
    * @param  bool    $pLock
    * @return bool
    */
-  /* !!!!!!!!!! ADD SUCCESS ENTRY TO LOG FOR INSTANTIATION !!!!!!!!!! */
   public function __construct(mpc_errors $pErrors) {
-    $this->classRef = bin2hex(random_bytes(8)).'::'.get_class();
     $this->err      = $pErrors;
+    $this->classRef = get_class().'::'.bin2hex(random_bytes(8));
+    $this->err->setStatus('none', $this->classRef);
   }
 # *** END - constructor ------------------------------------------------------- *
 #
 # *** BEGIN checklock --------------------------------------------------------- *
   public function checklock(string $pProp) : string|bool {
-    if (in_array($pProp, $this->secured)) {
-      $tReturn = 'secured';
-    } elseif (in_array($pProp, $this->locked)) {
-      $tReturn = 'locked';
+    $tMethod        = $this->classRef.'::'.__METHOD__;
+    $tCount         = func_num_args();
+    $tError         = $this->checkArgs($pProp, $tCount);
+    if ($tError == 'none') {
+      if (in_array($pProp, $this->secured)) {
+        $tReturn = 'secured';
+      } elseif (in_array($pProp, $this->locked)) {
+        $tReturn = 'locked';
+      } else {
+        $tReturn = false;
+      }
     } else {
+      $this->err->setStatus($tError, $tMethod);
       $tReturn = false;
     }
     return $tReturn;
@@ -60,34 +67,50 @@ class mpc_secure implements mpi_secure {
 #
 # *** BEGIN listlock ---------------------------------------------------------- *
   public function listlock(string $pFilter='') : array|bool {
-    if (!(count($this->locked)) || (in_array($this->classRef, $this->secured))) {
-      $tReturn = false;
-    } elseif ($pFilter) {
-      $tFilter = preg_quote($pFilter);
-      $tReturn = preg_grep('/^'.$tFilter.'.*/', $this->locked);
-      $tReturn = (count($tReturn)) ? $tReturn : false;
-    } elseif (in_array($this->classRef, $this->locked)) {
-      $tReturn = false;
+    $tMethod        = $this->classRef.'::'.__METHOD__;
+    $tCount         = func_num_args();
+    $tError         = $this->checkArgs($pFilter, $tCount);
+    if ($tError == 'none') {
+      if (!(count($this->locked)) || (in_array($this->classRef, $this->secured))) {
+        $tReturn = false;
+      } elseif ($pFilter) {
+        $tFilter = preg_quote($pFilter);
+        $tReturn = preg_grep('/^'.$tFilter.'.*/', $this->locked);
+        $tReturn = (count($tReturn)) ? $tReturn : false;
+      } elseif (in_array($this->classRef, $this->locked)) {
+        $tReturn = false;
+      } else {
+        $tReturn = $this->locked;
+      }
     } else {
-      $tReturn = $this->locked;
-     }
+      $this->err->setStatus($tError, $tMethod);
+      $tReturn = false;
+    }
     return $tReturn;
   }
 # *** END - listlock ---------------------------------------------------------- *
 #
 # *** BEGIN listsecure -------------------------------------------------------- *
   public function listsecure(string $pFilter='') : array|bool {
-    if (!(count($this->secured)) || (in_array($this->classRef, $this->secured))) {
-      $tReturn = false;
-    } elseif ($pFilter) {
-      $tFilter = preg_quote($pFilter);
-      $tReturn = preg_grep('/^'.$tFilter.'.*/', $this->secured);
-      $tReturn = (count($tReturn)) ? $tReturn : false;
-    } elseif (in_array($this->classRef, $this->locked)) {
-      $tReturn = false;
+    $tMethod        = $this->classRef.'::'.__METHOD__;
+    $tCount         = func_num_args();
+    $tError         = $this->checkArgs($pFilter, $tCount);
+    if ($tError == 'none') {
+      if (!(count($this->secured)) || (in_array($this->classRef, $this->secured))) {
+        $tReturn = false;
+      } elseif ($pFilter) {
+        $tFilter = preg_quote($pFilter);
+        $tReturn = preg_grep('/^'.$tFilter.'.*/', $this->secured);
+        $tReturn = (count($tReturn)) ? $tReturn : false;
+      } elseif (in_array($this->classRef, $this->locked)) {
+        $tReturn = false;
+      } else {
+        $tReturn = $this->secured;
+       }
     } else {
-      $tReturn = $this->secured;
-     }
+      $this->err->setStatus($tError, $tMethod);
+      $tReturn = false;
+    }
     return $tReturn;
   }
 # *** END - listsecure -------------------------------------------------------- *
@@ -95,14 +118,22 @@ class mpc_secure implements mpi_secure {
 # *** BEGIN lock -------------------------------------------------------------- *
 # You can secure a lock, but not lock a secure.
   public function lock(string $pProp) : bool {
-    if (in_array($pProp, $this->secured)) {
-      $this->err->setStatus('mpe_secure', $pProp);
-      $tReturn = false;
-    } elseif (in_array($pProp, $this->locked)) {
-      $tReturn = true;
+    $tMethod        = $this->classRef.'::'.__METHOD__;
+    $tCount         = func_num_args();
+    $tError         = $this->checkArgs($pProp, $tCount);
+    if ($tError == 'none') {
+      if (in_array($pProp, $this->secured)) {
+        $this->err->setStatus('mpe_secure', $pProp);
+        $tReturn = false;
+      } elseif (in_array($pProp, $this->locked)) {
+        $tReturn = true;
+      } else {
+        $this->locked[] = $pProp;
+        $tReturn = true;
+      }
     } else {
-      $this->locked[] = $pProp;
-      $tReturn = true;
+      $this->err->setStatus($tError, $tMethod);
+      $tReturn = false;
     }
     return $tReturn;
   }
@@ -110,15 +141,23 @@ class mpc_secure implements mpi_secure {
 #
 # *** BEGIN unlock ------------------------------------------------------------ *
   public function unlock(string $pProp) : bool  {
-    if (in_array($pProp, $this->secured)) {
-      $this->err->setStatus('mpe_secure', $pProp);
-      $tReturn = false;
-    } elseif(in_array($pProp, $this->locked)) {
-      $tKey = array_search($pProp, $this->locked);
-      unset($this->locked[$tKey]);
-      $tReturn = true;
+    $tMethod        = $this->classRef.'::'.__METHOD__;
+    $tCount         = func_num_args();
+    $tError         = $this->checkArgs($pProp, $tCount);
+    if ($tError == 'none') {
+      if (in_array($pProp, $this->secured)) {
+        $this->err->setStatus('mpe_secure', $pProp);
+        $tReturn = false;
+      } elseif(in_array($pProp, $this->locked)) {
+        $tKey = array_search($pProp, $this->locked);
+        unset($this->locked[$tKey]);
+        $tReturn = true;
+      } else {
+        $this->err->setStatus('mpe_null', $pProp);
+        $tReturn = false;
+      }
     } else {
-      $this->err->setStatus('mpe_null', $pProp);
+      $this->err->setStatus($tError, $tMethod);
       $tReturn = false;
     }
     return $tReturn;
@@ -128,8 +167,18 @@ class mpc_secure implements mpi_secure {
 # *** BEGIN secure ------------------------------------------------------------ *
 # You can secure a lock, but not lock a secure.
   public function secure(string $pProp) : bool  {
-    if (!in_array($pProp, $this->secured)) { $this->secured[] = $pProp; }
-    return true;
+    $tMethod        = $this->classRef.'::'.__METHOD__;
+    $tCount         = func_num_args();
+    $tError         = $this->checkArgs($pProp, $tCount);
+    if ($tError == 'none') {
+      if (!in_array($pProp, $this->secured)) { $this->secured[] = $pProp; }
+      $tReturn = true;
+    } else {
+      $this->err->setStatus($tError, $tMethod);
+      $tReturn = false;
+    }
+    return $tReturn;
+
   }
 # *** END - secure ------------------------------------------------------------ *
 #
@@ -139,6 +188,24 @@ class mpc_secure implements mpi_secure {
     if (!in_array($this->classRef, $this->secured)) { $this->secured[] = $this->classRef; }
     return true;
   }
+#
+# *** BEGIN checkArgs --------------------------------------------------------- *
+# All methods except secure4prod expect a single string.
+# This checks the count for each to reduce redundancy.
+# Return values from mpc_error codes.
+# Only returned fail condition should be mpe_param04b, rest should abend.
+# They are just here for CYA.
+private function checkArgs(string $pProp, int $pCount) : string  {
+  $tReturn          = 'none';
+  if ($pCount < 1) {
+    $tReturn        = 'mpe_param03';
+  } elseif (!is_string($pProp)) {
+    $tReturn        = 'mpe_param01';
+  } elseif ($pCount > 1) {
+    $tReturn        = 'mpe_param04a';
+  }
+  return $tReturn;
+}
 # *** END - secure4prod ------------------------------------------------------- *
 }
 // End mpc_secure ------------------------------------------------------------- *

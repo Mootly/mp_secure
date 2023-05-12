@@ -104,7 +104,7 @@ function initDefaults() {
 ?>
 
 <h3>Test 1.1: No Arguments</h3>
-<p class="alert">Fatal error. Correct.</p>
+<p class="alert">Fatal error. Correct. We can't report an error if the error handler was not passed in correctly. We want to abend in this case.</p>
 <?php
    initDefaults();
    try {
@@ -115,7 +115,7 @@ function initDefaults() {
 ?>
 
 <h3>Test 1.2: Bad Object</h3>
-<p class="alert">Fatal error. Correct.</p>
+<p class="alert">Fatal error. Correct. We can't report an error if the error handler was not passed in correctly. We want to abend in this case.</p>
 <?php
   $t_badLock        = dir('./');
   initDefaults();
@@ -159,7 +159,7 @@ function initDefaults() {
 </ol>
 
 <h3>Test 2.1: No arguments</h3>
-<p class="alert">Fatal error.</p>
+<p class="alert">Fatal error. Correct.</p>
 <?php
   initDefaults();
   try {
@@ -184,7 +184,7 @@ function initDefaults() {
 ?>
 
 <h3>Test 2.3: Bad argument - too many</h3>
-<p class="alert">Works. Only first argument is run.</p>
+<p class="alert">Good. Does nothing on too many parameters.</p>
 <?php
   $t_goodLock      = 'dummy::test';
   $t_badLock       = 'b';
@@ -315,7 +315,7 @@ function initDefaults() {
 ?>
 
 <h3>Test 3.6: Bad Argument - Too Many</h3>
-<p class="alert">Works. Only first argument is run. Allow.</p>
+<p class="alert">Good. Does nothing if too many parameters.</p>
 <?php
  $t_goodLock        = 'dummy::test';
  $t_badLock         = 'dummy::bad';
@@ -419,7 +419,7 @@ function initDefaults() {
 ?>
 
 <h3>Test 4.5: Too many arugments</h3>
-<p class="alert">Works. Only first argument is run. Allow.</p>
+<p class="alert">Good. Does nothing on too many parameters.</p>
 <?php
   $t_goodLock       = 'a';
   $t_badLock        = 'b';
@@ -529,7 +529,7 @@ function initDefaults() {
 ?>
 
 <h3>Test 5.6: Bad Argument - Too Many</h3>
-<p class="alert">Works. Only first argument is run. Allow.</p>
+<p class="alert">Good. Does nothing on too many parameters.</p>
 <?php
  $t_goodLock        = 'dummy::test';
  $t_badLock         = 'dummy::bad';
@@ -603,7 +603,7 @@ function initDefaults() {
 ?>
 
 <h3>Test 6.3: Bad Argument - Too Many</h3>
-<p class="alert">Works. Only first argument is run. Allow.</p>
+<p class="alert">Good. Does nothing on too many parameters.</p>
 <?php
   $t_status         = ' not run';
   try {
@@ -664,7 +664,7 @@ function initDefaults() {
 ?>
 
 <h3>Test 7.3: Bad Argument - Too Many</h3>
-<p class="alert">Works. Only first argument is run. Allow.</p>
+<p class="alert">Good. Does nothing on too many parameters.</p>
 <?php
   $t_status         = ' not run';
   try {

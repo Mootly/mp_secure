@@ -15,9 +15,18 @@ All it does is give you the ability to label things as locked from from further 
 
 It uses an array of registered strings for tracking, so it can be used to lock down anything that can call the class instance to pass it a string or test for values. It was written to be included in other classes to standardize locking, but can be used for anything.
 
+Except instantiation, which expects an error handling object, and `secure4prod`, which takes no arguments, all methods expect one and only one string.
+
+**This is NOT a robust solution.**
+
+Caveat emptor.
+
+Except it's free, so maybe more sort of caveat donum?
+
 ## System Requirements
 
 Requirements are pretty simple.
+
 - This was developed using PHP 8.1. It should work in PHP 7.0 and up, but has **not** been test for backward compatibility.
 - A web server, or what's the point really?
 
