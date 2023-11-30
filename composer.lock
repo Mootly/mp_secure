@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Mootly/mp_errors.git",
-                "reference": "fbe55ccca986d761393389c0daba78f0522b6c88"
+                "reference": "032f73932525d6942592abcc8396330aacfc3d00"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Mootly/mp_errors/zipball/fbe55ccca986d761393389c0daba78f0522b6c88",
-                "reference": "fbe55ccca986d761393389c0daba78f0522b6c88",
+                "url": "https://api.github.com/repos/Mootly/mp_errors/zipball/032f73932525d6942592abcc8396330aacfc3d00",
+                "reference": "032f73932525d6942592abcc8396330aacfc3d00",
                 "shasum": ""
             },
             "require": {
@@ -53,7 +53,7 @@
                 "issues": "https://github.com/Mootly/mp_errors/issues",
                 "source": "https://github.com/Mootly/mp_errors/tree/v1.0.0"
             },
-            "time": "2022-11-01T17:27:14+00:00"
+            "time": "2022-11-02T13:35:40+00:00"
         }
     ],
     "packages-dev": [],
