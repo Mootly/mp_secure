@@ -16,7 +16,7 @@
   * @method bool              secure4prod()
   *
   * @copyright 2021-2023 Mootly Obviate
-  * @package   mooseplum
+  * @package   mooseplum/php_classes/secure
   * @version   1.0.0
   * --- Revision History ------------------------------------------------------ *
   * 2023-05-12 | 1.0 ready.
