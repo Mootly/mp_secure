@@ -104,7 +104,7 @@ To be safe you can also run the following to rebuild the composer autoloader and
 composer dump-autoload -o
 ```
 
-Make sure you have the following line to your page or application initialization code before using this class definition. Adjust accordingly based on the location of your vendor library.
+Make sure you have the following line in your page or application initialization code before using this class definition. Adjust accordingly based on the location of your vendor library.
 
 ```php
 require_once "<site root>/<vendor lib>/autoload.php;"
