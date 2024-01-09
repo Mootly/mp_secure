@@ -4,7 +4,8 @@ This is a standalone version of the object locking class used by MoosePlum, for 
 
 Use requires adding calls to the secure objects class in your class definitions and letting it handle all locking/unlocking of properties. Such properties should be private and only accessible through the class methods for that class.
 
-**This is NOT a secure solution.**
+> [!WARNING]
+> This is NOT a secure solution.
 
 Rather it is meant to reducing coding errors in large projects by marking properties as locked once set.
 
@@ -17,7 +18,8 @@ It uses an array of registered strings for tracking, so it can be used to lock d
 
 Except instantiation, which expects an error handling object, and `secure4prod`, which takes no arguments, all methods expect one and only one string.
 
-**This is NOT a robust solution.**
+> [!WARNING]
+> This is NOT a robust solution.
 
 Caveat emptor.
 
@@ -27,7 +29,7 @@ Except it's free, so maybe more sort of caveat donum?
 
 Requirements are pretty simple.
 
-- This was developed using PHP 8.1 & 8/2. It should work in PHP 7.0 and up, but has **not** been test for backward compatibility.
+- This was developed using PHP 8.1 & 8.2. It should work in PHP 7.0 and up, but has **not** been test for backward compatibility.
 - A web server, or what's the point really?
 
 ## Dependencies
@@ -40,7 +42,7 @@ The namespace for this class is `mpc`.
 
 The location of this class definition should be your vendor library. For inclusion with other MoosePlum stuff that would be `/_lib/mootly/mp_secure/`.
 
-## Contents
+## Assets
 
 The files in this set are as follows:
 
@@ -112,7 +114,7 @@ require_once "<site root>/<vendor lib>/autoload.php;"
 
 That should be all your need to do to get it up and running.
 
-## Instantiation
+## Configuration
 
 This class definition has one dependency that needs to be called before it: `mootly\mpc_errors`.
 
