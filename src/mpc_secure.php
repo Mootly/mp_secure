@@ -19,6 +19,7 @@
   * @package   mooseplum/php_classes/secure
   * @version   1.0.0
   * --- Revision History ------------------------------------------------------ *
+  * 2025-04-17 | Fixed typo in comments.
   * 2023-05-12 | 1.0 ready.
   * --------------------------------------------------------------------------- */
 namespace mpc;

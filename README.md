@@ -1,5 +1,7 @@
 # MoosePlum Secure Objects Class
 
+Repo: [Mootly/mp_secure](https://github.com/Mootly/mp_secure)
+
 This is a standalone version of the object locking class used by MoosePlum, for those who want a really simple and consistent method for protecting data in objects.
 
 Use requires adding calls to the secure objects class in your class definitions and letting it handle all locking/unlocking of properties. Such properties should be private and only accessible through the class methods for that class.
@@ -46,14 +48,15 @@ The location of this class definition should be your vendor library. For inclusi
 
 The files in this set are as follows:
 
-| path                | description
-| ----------          | ----------
-| composer.json       | Yep, we are using [Composer](https://getcomposer.org).
-| LICENSE.md          | License notice ( [MIT](https://mit-license.org) ).
-| README.md           | This document.
-| mpt_secure.php      | Local unit test file to make sure things work.
-| src/mpc_secure.php  | The class definition.
-| src/mpi_secure.php  | The interface for the class.
+| path               | description                                            |
+| ------------------ | ------------------------------------------------------ |
+| composer.json      | Yep, we are using [Composer](https://getcomposer.org). |
+| CHAMGELOG.md       | The changelog for this utility.                        |
+| LICENSE.md         | License notice ( [MIT](https://mit-license.org) ).     |
+| README.md          | This document.                                         |
+| mpt_secure.php     | Local unit test file to make sure things work.         |
+| src/mpc_secure.php | The class definition.                                  |
+| src/mpi_secure.php | The interface for the class.                           |
 
 ## Installation
 
