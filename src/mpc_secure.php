@@ -17,8 +17,9 @@
   *
   * @copyright 2021-2023 Mootly Obviate
   * @package   mooseplum/php_classes/secure
-  * @version   1.0.0
+  * @version   1.0.1
   * --- Revision History ------------------------------------------------------ *
+  * 2025-09-23 | Docs updates for deprecations.
   * 2025-04-17 | Fixed typo in comments.
   * 2023-05-12 | 1.0 ready.
   * --------------------------------------------------------------------------- */
@@ -40,7 +41,7 @@ class mpc_secure implements mpi_secure {
    */
   public function __construct(mpc_errors $pErrors) {
     $this->err      = $pErrors;
-    $this->classRef = bin2hex(random_bytes(8)).'::'.get_class();
+    $this->classRef = bin2hex(random_bytes(8)).'::'.__CLASS__;
     $this->err->setStatus('none', $this->classRef);
   }
 # *** END - constructor ------------------------------------------------------- *

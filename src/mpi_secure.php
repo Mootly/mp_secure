@@ -15,14 +15,15 @@
   * - mpo_parts::main_body
   * - mpo_menus::main_nav::home_link
   * Autogeneration examples:
-  * - get_class().'::'.someProp
-  * - get_class().'::'.__METHOD__
-  * - get_class().'_'.self::$iCount++ (for multiple instances)
+  * - _CLASS__.'::'.someProp
+  * - __CLASS__.'::'.__METHOD__
+  * - __CLASS__.'_'.self::$iCount++ (for multiple instances)
   *
   * @copyright 2021-2023 Mootly Obviate
   * @package   mooseplum/php_classes/secure
-  * @version   1.0.0
+  * @version   1.0.1
   * --- Revision History ------------------------------------------------------ *
+  * 2025-09-23 | Docs updates for deprecations.
   * 2025-04-17 | Fixed typo in comments.
   * 2023-05-12 | 1.0 ready.
   * --------------------------------------------------------------------------- */

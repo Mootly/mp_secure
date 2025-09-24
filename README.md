@@ -141,13 +141,13 @@ Examples:
 
 Autogeneration examples:
 
-- `get_class().'::'.someProp`
-- `get_class().'::'.__METHOD__`
-- `get_class().'_'.self::$iCount++` (for multiple instances)
+- `__CLASS__.'::'.someProp`
+- `__CLASS__.'::'.__METHOD__`
+- `__CLASS__.'_'.self::$iCount++` (for multiple instances)
 
 For security add a hash of some sort that is always used for all calls by a given class. This prevents others without access to private properties from overwriting any locks. Examples of PHP hash generators:
 
-- `md5(get_class())`
+- `md5(__CLASS__)`
 - `md5(rand())`
 - `uniqid()`
 - `bin2hex(random_bytes(16))`
@@ -157,7 +157,7 @@ Since these will only persist for as long as it takes for PHP to generate and se
 MoosePlum classes define the following property on instantiation to ensure unique names.
 
 ```php
-$this->classRef = bin2hex(random_bytes(8)).'::'.get_class();
+$this->classRef = bin2hex(random_bytes(8)).'::'.__CLASS__;
 ```
 
 ### Methods
